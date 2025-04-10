@@ -1,0 +1,22 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<main class="content">
+    <h1>🗂 Seleccionar lotes por semana</h1>
+
+    <form method="POST" action="{% url 'seleccionar_lotes' %}" class="stat-box">
+        {% csrf_token %}
+        <p>Selecciona los lotes que deseas incluir en el documento final:</p>
+
+        {% for lote in lotes %}
+        <div style="margin: 10px 0;">
+            <input type="checkbox" name="lotes_seleccionados" value="{{ lote.id }}" id="lote{{ lote.id }}">
+            <label for="lote{{ lote.id }}">
+                Semana {{ lote.semana }} ({{ lote.equipos|length }} equipos)
+            </label>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">📥 Generar Documento de Depuración</button>
+    </form>
+</main>
+{% endblock %}

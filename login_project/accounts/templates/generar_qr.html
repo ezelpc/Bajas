@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar QR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-4 text-gray-700">Generar Códigos QR</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="cantidad" class="block text-sm font-medium text-gray-700">Cantidad de QR</label>
+            <input type="number" name="cantidad" id="cantidad" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ingrese la cantidad" required>
+            <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Generar</button>
+        </form>
+        {% if success %}
+            <p class="mt-4 text-green-600">¡Códigos QR generados exitosamente!</p>
+            <p class="mt-2 text-gray-600">Los archivos se han guardado en la carpeta <span class="font-semibold">media/qr_codes/</span>.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

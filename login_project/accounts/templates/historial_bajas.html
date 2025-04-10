@@ -1,0 +1,30 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<main class="content">
+    <h1>📊 Historial de Bajas</h1>
+
+    <div class="stat-box">
+        <h3>Total de lotes cerrados: {{ total_lotes }}</h3>
+        <h3>Total de equipos dados de baja: {{ total_equipos }}</h3>
+    </div>
+
+    <table class="stat-box" style="width:100%; margin-top: 2rem;">
+        <thead>
+            <tr>
+                <th>Semana</th>
+                <th>Cantidad de equipos</th>
+                <th>Fecha de cierre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lote in historial %}
+            <tr>
+                <td>Semana {{ lote.semana }}</td>
+                <td>{{ lote.equipos|length }}</td>
+                <td>{{ lote.fecha_cierre }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Registro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-4 text-gray-700">Formulario de Registro</h1>
+        <form method="POST" action="{% url 'formulario_qr' folio %}">
+            {% csrf_token %}
+            <label for="folio" class="block text-sm font-medium text-gray-700">Folio</label>
+            <input type="text" id="folio" name="folio" value="{{ folio }}" readonly class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <label for="pzas" class="block text-sm font-medium text-gray-700 mt-4">Piezas</label>
+            <input type="number" id="pzas" name="pzas" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ingrese la cantidad de piezas" required>
+
+            <label for="descripcion" class="block text-sm font-medium text-gray-700 mt-4">Descripción</label>
+            <textarea id="descripcion" name="descripcion" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Ingrese la descripción" required></textarea>
+
+            <label for="modelo" class="block text-sm font-medium text-gray-700 mt-4">Modelo</label>
+            <input type="text" id="modelo" name="modelo" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <label for="numero_serie" class="block text-sm font-medium text-gray-700 mt-4">Número de Serie</label>
+            <input type="text" id="numero_serie" name="numero_serie" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <label for="activo_smn" class="block text-sm font-medium text-gray-700 mt-4">Activo SMN</label>
+            <input type="text" id="activo_smn" name="activo_smn" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <label for="sucursal" class="block text-sm font-medium text-gray-700 mt-4">Sucursal</label>
+            <input type="text" id="sucursal" name="sucursal" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+            <button type="submit" class="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Registrar Baja</button>
+        </form>
+    </div>
+</body>
+</html>

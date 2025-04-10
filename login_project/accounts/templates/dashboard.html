@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Sistema de Bajas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Personalización de estilos */
+        .menu-link {
+            @apply block px-4 py-2 text-white hover:bg-indigo-700 rounded-md;
+        }
+        .metric-card {
+            @apply bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow duration-300;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-indigo-600 text-white w-64 p-6 hidden md:block">
+        <h2 class="text-2xl font-bold mb-6">Sistema de Bajas</h2>
+        <nav class="space-y-4">
+            <a href="{% url 'generar_qr' %}" class="menu-link">📷 Generar QR</a>
+            <a href="{% url 'seleccionar_lotes' %}" class="menu-link">📝 Documento de Depuración</a>
+            <a href="{% url 'historial_bajas' %}" class="menu-link">📊 Historial de Bajas</a>
+            <a href="{% url 'logout' %}" class="menu-link">🚪 Cerrar sesión</a>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow p-4 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <button id="menuBtn" class="md:hidden text-indigo-600 focus:outline-none">
+                    <!-- Ícono de menú -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <h1 class="text-xl font-bold text-indigo-600">Dashboard</h1>
+            </div>
+            <div>
+                <p class="text-sm text-gray-600">Usuario: <span class="font-semibold">{{ user.username }}</span></p>
+                <p class="text-sm text-gray-600">Rol: <span class="font-semibold capitalize">{{ user.rol }}</span></p>
+            </div>
+        </header>
+
+        <!-- Contenido -->
+        <main class="flex-1 p-6">
+            <h2 class="text-2xl font-bold mb-6 text-gray-700">Resumen Semanal</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Métrica 1 -->
+                <div class="metric-card">
+                    <h3 class="text-lg font-semibold text-gray-700">Lotes Cerrados</h3>
+                    <p class="text-3xl font-bold text-indigo-600">{{ lotes_cerrados }}</p>
+                </div>
+                <!-- Métrica 2 -->
+                <div class="metric-card">
+                    <h3 class="text-lg font-semibold text-gray-700">Equipos Dados de Baja</h3>
+                    <p class="text-3xl font-bold text-indigo-600">{{ equipos_baja }}</p>
+                </div>
+                <!-- Métrica 3 -->
+                <div class="metric-card">
+                    <h3 class="text-lg font-semibold text-gray-700">Usuarios Activos</h3>
+                    <p class="text-3xl font-bold text-indigo-600">{{ usuarios_activos }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script para menú hamburguesa -->
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>
